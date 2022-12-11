@@ -1,7 +1,9 @@
 ﻿using Api.Demo.Models;
 using Api.Demo.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api.Demo.Controllers
 {
@@ -22,7 +24,7 @@ namespace Api.Demo.Controllers
 
         //Decorate the method with HttpGet attribute
         [HttpGet]
-        public IActionResult GetAllItems()
+        public async Task<IActionResult> GetAllItems()
         {
             //Returns a response back to client
             //var Items = new List<TodoItems>()
@@ -38,10 +40,18 @@ namespace Api.Demo.Controllers
             //return Ok(Items);
             //Ok response with 200 status code
             //tells the client that it was a 200 success coming back from Restful API
-            var Items=_itemsService.GetTodoItems();
+            var Items = await _itemsService.GetTodoItems();
             return Ok(Items);
 
 
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetItem(string id)
+        {
+            var Item=await _itemsService.GetItem(id);
+            return Ok(Item);
         }
     }
 }

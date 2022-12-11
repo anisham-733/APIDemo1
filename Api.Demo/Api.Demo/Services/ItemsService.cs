@@ -1,6 +1,7 @@
 ﻿using Api.Demo.Models;
 using Api.Demo.Repositories;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api.Demo.Services
 {
@@ -11,9 +12,15 @@ namespace Api.Demo.Services
         {
             this.itemsRepository = itemsRepository;
         }
-        IEnumerable<TodoItems> IItemsService.GetTodoItems()
+
+        public async Task<TodoItems> GetItem(string id)
         {
-            return this.itemsRepository.GetAllItems();
+            return await itemsRepository.GetItemById(id);
+        }
+
+        async Task<IEnumerable<TodoItems>> IItemsService.GetTodoItems()
+        {
+            return await this.itemsRepository.GetAllItems();
         }
     }
 }
