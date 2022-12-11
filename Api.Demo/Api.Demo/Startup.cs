@@ -1,4 +1,6 @@
 using Api.Demo.Models;
+using Api.Demo.Repositories;
+using Api.Demo.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +31,8 @@ namespace Api.Demo
         {
             services.AddControllers();
             services.AddDbContext<mydatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conn")));
-
+            services.AddScoped<IItemsService, ItemsService>();
+            services.AddScoped<IItemsRepository, ItemsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
