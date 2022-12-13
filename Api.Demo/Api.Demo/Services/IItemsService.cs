@@ -10,5 +10,6 @@ namespace Api.Demo.Services
         Task<TodoItems> GetItem(string id);
         Task<TodoItems> AddItem(TodoItems item);
         Task<TodoItems> DeleteItem(string id);
+        Task<TodoItems> UpdateItem(string id, TodoItems item);
     }
 }

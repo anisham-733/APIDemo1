@@ -11,5 +11,6 @@ namespace Api.Demo.Repositories
 
         Task<TodoItems> AddAsync(TodoItems item);
         Task<TodoItems> DeleteAsync(string id);
+        Task<TodoItems> UpdateAsync(TodoItems item);
     }
 }

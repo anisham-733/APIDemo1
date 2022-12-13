@@ -79,5 +79,17 @@ namespace Api.Demo.Controllers
             }
             return Ok(Item);
         }
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateItem([FromRoute] string id,[FromBody] TodoItems todoItem)
+        {
+            var Item=await _itemsService.UpdateItem(id, todoItem);
+            if(Item== null)
+            {
+                return NotFound();
+            }
+            return Ok(Item);
+
+        }
     }
 }

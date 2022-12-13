@@ -48,5 +48,16 @@ namespace Api.Demo.Repositories
             return await this.mydatabaseContext.TodoItems.FirstOrDefaultAsync(x=>x.Id == id);
             
         }
+
+        public async Task<TodoItems> UpdateAsync(TodoItems item)
+        {
+            
+            mydatabaseContext.TodoItems.Update(item); 
+            mydatabaseContext.SaveChanges();
+            return item;
+            
+
+
+        }
     }
 }

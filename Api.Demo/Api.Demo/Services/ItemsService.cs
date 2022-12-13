@@ -35,6 +35,19 @@ namespace Api.Demo.Services
             return await itemsRepository.GetItemById(id);
         }
 
+        public async Task<TodoItems> UpdateItem(string id, TodoItems item)
+        {
+            var existingItem=await itemsRepository.GetItemById(id);
+            if (existingItem == null)
+            {
+                return null;
+            }
+            existingItem.Name= item.Name;
+            existingItem.CreatedDate= System.DateTime.Now;
+            existingItem.Status = item.Status;
+            return await itemsRepository.UpdateAsync(existingItem);
+        }
+
         async Task<IEnumerable<TodoItems>> IItemsService.GetTodoItems()
         {
             return await this.itemsRepository.GetAllItems();
