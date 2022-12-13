@@ -8,5 +8,7 @@ namespace Api.Demo.Services
     {
         Task<IEnumerable<TodoItems>> GetTodoItems();
         Task<TodoItems> GetItem(string id);
+        Task<TodoItems> AddItem(TodoItems item);
+        Task<TodoItems> DeleteItem(string id);
     }
 }

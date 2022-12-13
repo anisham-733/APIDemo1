@@ -1,7 +1,9 @@
 ﻿using Api.Demo.Models;
 using Api.Demo.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +16,8 @@ namespace Api.Demo.Controllers
     //Specifying route as controller name
     [Route("[controller]")]
 
+    
+
     public class ItemsController : Controller
     {
         private readonly IItemsService _itemsService;
@@ -24,6 +28,8 @@ namespace Api.Demo.Controllers
 
         //Decorate the method with HttpGet attribute
         [HttpGet]
+        //specify action
+        [ActionName("GetAllItems")]
         public async Task<IActionResult> GetAllItems()
         {
             //Returns a response back to client
@@ -51,6 +57,26 @@ namespace Api.Demo.Controllers
         public async Task<IActionResult> GetItem(string id)
         {
             var Item=await _itemsService.GetItem(id);
+            return Ok(Item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddItem(TodoItems todoItems)
+        {
+            Console.WriteLine("hello");
+            var response=await _itemsService.AddItem(todoItems);
+            return CreatedAtAction("GetAllItems", new { id = response.Id }, response);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteItem(string id)
+        {
+            var Item =await _itemsService.DeleteItem(id);
+            if (Item == null)
+            {
+                return NotFound();
+            }
             return Ok(Item);
         }
     }

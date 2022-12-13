@@ -8,5 +8,8 @@ namespace Api.Demo.Repositories
     {
         Task<IEnumerable<TodoItems>> GetAllItems();
         Task<TodoItems> GetItemById(string id);
+
+        Task<TodoItems> AddAsync(TodoItems item);
+        Task<TodoItems> DeleteAsync(string id);
     }
 }
