@@ -30,6 +30,7 @@ namespace Api.Demo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddDbContext<mydatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conn")));
             services.AddScoped<IItemsService, ItemsService>();
             services.AddScoped<IItemsRepository, ItemsRepository>();

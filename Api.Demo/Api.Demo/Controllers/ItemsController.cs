@@ -1,5 +1,6 @@
 ﻿using Api.Demo.Models;
 using Api.Demo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Routing;
@@ -14,7 +15,8 @@ namespace Api.Demo.Controllers
     //[Route("Items")]
 
     //Specifying route as controller name
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
 
     
 
