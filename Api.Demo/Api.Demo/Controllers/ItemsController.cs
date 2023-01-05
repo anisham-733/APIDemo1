@@ -16,7 +16,7 @@ namespace Api.Demo.Controllers
 
     //Specifying route as controller name
     [Route("api/[controller]")]
-    [Authorize]
+    // /api/items
 
     
 
